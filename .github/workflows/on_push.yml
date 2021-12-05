@@ -26,7 +26,7 @@ jobs:
         id: python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.10"
+          python-version: "3.8"
       - name: Cache packages
         uses: actions/cache@v2
         with:
@@ -40,10 +40,7 @@ jobs:
           poetry config virtualenvs.create false
           poetry install -n
           python -m pip install -U boto3-stubs botocore-stubs
-      - name: Lint
-        run: |
-          python -m flake8 mypy_boto3_builder
-          python -m mypy mypy_boto3_builder
+
       - name: Test
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
